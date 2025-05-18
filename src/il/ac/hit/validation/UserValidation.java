@@ -1,9 +1,16 @@
 package il.ac.hit.validation;
 
+import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * A combinator-based interface for validating User objects.
+ * Supports combining multiple validation rules using logical operations.
+ */
+@FunctionalInterface
 public interface UserValidation extends Function<User, ValidationResult> {
 
+    // AND: both validations must pass
     default UserValidation and(UserValidation other) {
         return user -> {
             ValidationResult result = this.apply(user);
@@ -11,11 +18,49 @@ public interface UserValidation extends Function<User, ValidationResult> {
         };
     }
 
+    // OR: at least one validation must pass
     default UserValidation or(UserValidation other) {
         return user -> {
             ValidationResult result = this.apply(user);
             return result.isValid() ? result : other.apply(user);
         };
     }
-}
 
+    // XOR: exactly one must pass
+    default UserValidation xor(UserValidation other) {
+        return user -> {
+            boolean first = this.apply(user).isValid();
+            boolean second = other.apply(user).isValid();
+            if (first ^ second) {
+                return new Valid();
+            } else {
+                return new Invalid("XOR validation failed: both are either valid or invalid");
+            }
+        };
+    }
+
+    // Static method: ALL validations must pass
+    static UserValidation all(UserValidation... validations) {
+        return user -> {
+            for (UserValidation validation : validations) {
+                ValidationResult result = validation.apply(user);
+                if (!result.isValid()) {
+                    return result; // return first failure
+                }
+            }
+            return new Valid();
+        };
+    }
+
+    // Static method: NONE of the validations must pass
+    static UserValidation none(UserValidation... validations) {
+        return user -> {
+            for (UserValidation validation : validations) {
+                if (validation.apply(user).isValid()) {
+                    return new Invalid("At least one validation passed when none should");
+                }
+            }
+            return new Valid();
+        };
+    }
+}
