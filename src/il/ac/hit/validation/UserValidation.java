@@ -63,4 +63,89 @@ public interface UserValidation extends Function<User, ValidationResult> {
             return new Valid();
         };
     }
+
+    static UserValidation emailEndsWithIl() {
+        return user -> {
+            if (user.getEmail().endsWith("il")) {
+                return new Valid();
+            } else {
+                return new Invalid("Email must end with 'il'");
+            }
+        };
+    }
+
+    static UserValidation emailLengthBiggerThan10() {
+        return user -> {
+            if (user.getEmail().length() > 10) {
+                return new Valid();
+            } else {
+                return new Invalid("Email must be longer than 10 characters");
+            }
+        };
+    }
+
+    static UserValidation passwordLengthBiggerThan8() {
+        return user -> {
+            if (user.getPassword().length() > 8) {
+                return new Valid();
+            } else {
+                return new Invalid("Password must be longer than 8 characters");
+            }
+        };
+    }
+
+    static UserValidation passwordIncludesLettersNumbersOnly() {
+        return user -> {
+            String password = user.getPassword();
+            for (int i = 0; i < password.length(); i++) {
+                char c = password.charAt(i);
+                if (!Character.isLetterOrDigit(c)) {
+                    return new Invalid("Password must include only letters and numbers");
+                }
+            }
+            return new Valid();
+        };
+    }
+
+    static UserValidation passwordIncludesDollarSign() {
+        return user -> {
+            if (user.getPassword().contains("$")) {
+                return new Valid();
+            } else {
+                return new Invalid("Password must include the dollar sign '$'");
+            }
+        };
+    }
+
+    static UserValidation passwordIsDifferentFromUsername() {
+        return user -> {
+            if (!user.getPassword().equals(user.getUsername())) {
+                return new Valid();
+            } else {
+                return new Invalid("Password must be different from username");
+            }
+        };
+    }
+
+    static UserValidation ageBiggerThan18() {
+        return user -> {
+            if (user.getAge() > 18) {
+                return new Valid();
+            } else {
+                return new Invalid("User must be older than 18");
+            }
+        };
+    }
+
+    static UserValidation usernameLengthBiggerThan8() {
+        return user -> {
+            if (user.getUsername().length() > 8) {
+                return new Valid();
+            } else {
+                return new Invalid("Username must be longer than 8 characters");
+            }
+        };
+    }
+
+
 }
