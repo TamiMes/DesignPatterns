@@ -5,7 +5,7 @@ package il.ac.hit.validation;
  * Supports creation of BasicUser, PremiumUser, and PlatinumUser.
  */
 public class UserFactory {
-
+ 
     /**
      * Creates a specific type of user based on the provided type string.
      *

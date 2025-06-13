@@ -19,12 +19,5 @@ public class PlatinumUser extends User {
         super(username, email, password, age);
     }
 
-    /**
-     * Returns a string representation of this PlatinumUser.
-     * @return string representation including user type and basic info
-     */
-    @Override
-    public String toString() {
-        return "PlatinumUser{" + super.toString() + "}";
-    }
+
 }

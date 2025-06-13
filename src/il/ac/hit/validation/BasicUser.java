@@ -19,12 +19,5 @@ public class BasicUser extends User {
         super(username, email, password, age);
     }
 
-    /**
-     * Returns a string representation of this BasicUser.
-     * @return string representation including user type and basic info
-     */
-    @Override
-    public String toString() {
-        return "BasicUser{" + super.toString() + "}";
-    }
+
 }
