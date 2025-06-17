@@ -6,7 +6,7 @@ import il.ac.hit.validation.ValidationResult;
 public class UserValidationV2Demo {
     public static void main(String args[]) {
 
-        User user = new User("admin","admin@#yzw.co.il","abc123&",34);
+        PlatinumUser  PlatinumUser = new  PlatinumUser("admin","admin@#yzw.co.il","abc123",34);
 
         UserValidation validation1 = UserValidation.emailLengthBiggerThan10();
 
@@ -15,16 +15,14 @@ public class UserValidationV2Demo {
 
 
 
-        ValidationResult result = (validation1.and(validation2).and(validation3)).apply(user);
+        ValidationResult result = (validation1.and(validation2).and(validation3)).apply( PlatinumUser);
+        System.out.println(PlatinumUser);
 
         if(result.isValid()) {
-
-            System.out.println("User is valid");
-
+            System.out.println("User  is valid");
         } else {
-
             System.out.println("User is not valid");
-
+            result.getReason().ifPresent(reason -> System.out.println("Reason: " + reason));
         }
 
 

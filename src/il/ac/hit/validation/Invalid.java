@@ -48,3 +48,4 @@ public class Invalid implements ValidationResult {
         return Optional.of(reason);
     }
 }
+

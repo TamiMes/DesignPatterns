@@ -114,37 +114,6 @@ public class User {
         }
         this.age = age;
     }
-
-    // ================== Object Overrides ==================
-
-    /**
-     * Returns a string representation of the user.
-     * @return string with username and email
-     */
-    @Override
-    public String toString() {
-        return "User{username='" + username + "', email='" + email + "'}";
-    }
-
-    /**
-     * Compares this user to another object.
-     * @param obj the object to compare to
-     * @return true if the users have the same username and email
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof User)) return false;
-        User other = (User) obj;
-        return username.equals(other.username) && email.equals(other.email);
-    }
-
-    /**
-     * Generates a hash code consistent with equals.
-     * @return the hash code
-     */
-    @Override
-    public int hashCode() {
-        return username.hashCode() + 31 * email.hashCode();
-    }
 }
+
+

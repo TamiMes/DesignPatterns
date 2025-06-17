@@ -8,8 +8,8 @@ public class UserSortDemo {
         // Create unsorted users
         User[] users = {
                 new User("charlie", "charlie@mail.com", "123", 30),
-                new User("alice", "alice@mail.com", "123", 25),
-                new User("bob", "bob@mail.com", "123", 28)
+                new User("alice", "alice@mail.com", "123", 28),
+                new User("bob", "bob@mail.com", "123", 25)
         };
 
         // Sort by username

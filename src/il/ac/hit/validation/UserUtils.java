@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 /**
  * Utility class providing operations on arrays of {@link User} objects.
- * Currently includes sorting using the Bubble Sort algorithm.
+ * Sorting using the Bubble Sort algorithm.
  */
 public class UserUtils {
 
@@ -13,7 +13,7 @@ public class UserUtils {
      * <p>
      * Template Method Pattern:
      * The sorting logic (bubble sort) is fixed,
-     * but the comparison logic is passed via a {@link Comparator}.
+     * The comparison logic is passed via a {@link Comparator}.
      *
      * @param users the array of users to sort
      * @param comparator the comparator used to determine the order
